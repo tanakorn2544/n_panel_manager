@@ -73,6 +73,11 @@ class NPANEL_PT_Main(bpy.types.Panel):
         col.separator()
         col.operator("npanel.refresh_categories", text="", icon='FILE_REFRESH')
         
+        # Import/Export row
+        io_row = manage_box.row(align=True)
+        io_row.operator("npanel.export_groups", text="Export", icon='EXPORT')
+        io_row.operator("npanel.import_groups", text="Import", icon='IMPORT')
+        
         # ============================================================
         # EDIT SELECTED GROUP (If one is selected)
         # ============================================================
