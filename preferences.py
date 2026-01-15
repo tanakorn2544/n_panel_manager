@@ -23,6 +23,13 @@ class NPANEL_Preferences(AddonPreferences):
     
     # Store global state of whether we are currently "Filtering"
     is_filtering: BoolProperty(name="Is Filtering", default=False)
+    
+    # Search filter for tab list
+    search_filter: StringProperty(
+        name="Search",
+        description="Filter tabs by name",
+        default=""
+    )
 
     def draw(self, context):
         layout = self.layout

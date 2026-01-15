@@ -86,13 +86,37 @@ class NPANEL_PT_Main(bpy.types.Panel):
             edit_box.prop_search(group, "workspace_name", bpy.data, "workspaces", text="Auto-Activate on Workspace")
             
             edit_box.separator()
+            
+            # Search filter
+            row = edit_box.row(align=True)
+            row.prop(prefs, "search_filter", text="", icon='VIEWZOOM')
+            if prefs.search_filter:
+                row.operator("npanel.clear_search", text="", icon='X')
+            
             edit_box.label(text="Included Tabs:")
             
             col = edit_box.column(align=True)
+            search_term = prefs.search_filter.lower()
             for cat in group.categories:
+                # Filter by search
+                if search_term and search_term not in cat.name.lower():
+                    continue
                 row = col.row(align=True)
                 row.prop(cat, "enabled", text="")
                 row.label(text=cat.name)
+        
+        # ============================================================
+        # QUICK PRESETS
+        # ============================================================
+        layout.separator()
+        preset_box = layout.box()
+        preset_box.label(text="Quick Presets", icon='PRESET')
+        
+        from .presets import get_preset_names
+        grid = preset_box.grid_flow(row_major=True, columns=2, even_columns=True)
+        for preset_name in get_preset_names():
+            op = grid.operator("npanel.apply_preset", text=preset_name)
+            op.preset_name = preset_name
 
 def register():
     bpy.utils.register_class(NPANEL_PT_Main)

@@ -98,12 +98,64 @@ class NPANEL_OT_RefreshCategories(bpy.types.Operator):
         
         return {'FINISHED'}
 
+class NPANEL_OT_ApplyPreset(bpy.types.Operator):
+    bl_idname = "npanel.apply_preset"
+    bl_label = "Apply Preset"
+    bl_description = "Create a group from a workflow preset"
+    
+    preset_name: bpy.props.StringProperty()
+    
+    def execute(self, context):
+        from .presets import match_preset_to_categories
+        from .core import PanelScanner
+        
+        prefs = context.preferences.addons[ADDON_ID].preferences
+        
+        # Get all available categories
+        PanelScanner.ensure_original_categories_stored()
+        cats = set()
+        for cls in PanelScanner.get_all_n_panels():
+            cat = getattr(cls, '_npanel_orig_category', getattr(cls, 'bl_category', 'Item'))
+            cats.add(cat)
+        
+        # Match preset against available categories
+        matches = match_preset_to_categories(self.preset_name, list(cats))
+        
+        if not matches:
+            self.report({'WARNING'}, f"No matching tabs found for '{self.preset_name}'")
+            return {'CANCELLED'}
+        
+        # Create a new group
+        group = prefs.groups.add()
+        group.name = self.preset_name
+        
+        # Add all categories, enable only the matched ones
+        for cat_name in sorted(list(cats)):
+            item = group.categories.add()
+            item.name = cat_name
+            item.enabled = cat_name in matches
+        
+        self.report({'INFO'}, f"Created group '{self.preset_name}' with {len(matches)} tabs")
+        return {'FINISHED'}
+
+class NPANEL_OT_ClearSearch(bpy.types.Operator):
+    bl_idname = "npanel.clear_search"
+    bl_label = "Clear Search"
+    bl_description = "Clear the search filter"
+    
+    def execute(self, context):
+        prefs = context.preferences.addons[ADDON_ID].preferences
+        prefs.search_filter = ""
+        return {'FINISHED'}
+
 classes = (
     NPANEL_OT_AddGroup,
     NPANEL_OT_RemoveGroup,
     NPANEL_OT_ApplyGroup,
     NPANEL_OT_RestoreAll,
     NPANEL_OT_RefreshCategories,
+    NPANEL_OT_ApplyPreset,
+    NPANEL_OT_ClearSearch,
 )
 
 def register_classes():
