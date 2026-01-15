@@ -4,58 +4,62 @@ A Blender addon for organizing and decluttering your N-Panel (sidebar) by groupi
 
 ## Features
 
-- **Group Management**: Create custom groups of N-Panel tabs (e.g., "Modeling", "Rigging", "Animation")
-- **Quick Filtering**: Click a group button to instantly show only those tabs, hiding the rest
-- **Workspace Auto-Activation**: Link groups to workspaces - switching workspace automatically applies the linked group
-- **Color Coding**: Assign colors to tabs for visual organization
-- **Persistent State**: Your filtering state persists across Blender sessions
+- **Group Management**: Create custom groups of N-Panel tabs
+- **Quick Filtering**: Click a group button to instantly show only those tabs
+- **Search/Filter**: Search tabs by name when editing groups
+- **Workflow Presets**: 10 pre-configured presets based on popular addons:
+  - Modeling Essentials, Hard Surface, Sculpting
+  - Animation & Rigging, Environment, Texturing
+  - Rendering, Utility Tools, Retopology, UV Workflow
+- **Workspace Auto-Activation**: Link groups to workspaces for automatic switching
+- **Persistent State**: Your filtering persists across sessions
 
 ## Installation
 
-1. Download or zip the `n_panel_manager` folder
+1. Download/zip the `n_panel_manager` folder
 2. In Blender: **Edit > Preferences > Add-ons > Install**
 3. Select the zip file and enable the addon
 
 ## Usage
 
-### Access the Panel
-Open the N-Panel (press `N` in the 3D View) and look for the **"N-Panel Tool"** tab.
+### Quick Start
+1. Open N-Panel (press `N`) → find **"N-Panel Tool"** tab
+2. Click a **Quick Preset** button (e.g., "Modeling Essentials")
+3. The addon creates a group with matching installed addons enabled
+4. Click the group button to apply filtering
 
-### Creating Groups
-1. Click the **+** button in the "Manage Groups" section
-2. Enter a name for your group (e.g., "Modeling")
-3. In the "Edit" section, check the tabs you want to include
-
-### Applying a Group
-- Click any group button at the top to instantly filter the N-Panel
-- Click **"Show All"** to restore all tabs
+### Manual Group Creation
+1. Click **+** in "Manage Groups"
+2. Name your group
+3. Use the **search box** to find tabs
+4. Check/uncheck tabs to include
 
 ### Workspace Auto-Activation
-1. Select a group in "Manage Groups"
-2. In the "Edit" section, set "Auto-Activate on Workspace"
-3. Now switching to that workspace will automatically apply the group
+1. Select a group → set "Auto-Activate on Workspace"
+2. Switching workspaces will auto-apply the linked group
 
 ## File Structure
 
 ```
 n_panel_manager/
-├── __init__.py       # Addon entry point
+├── __init__.py       # Entry point
 ├── constants.py      # Shared constants
-├── preferences.py    # Addon preferences & data structures
-├── core.py           # Panel scanning & filtering logic
+├── preferences.py    # Data structures
+├── core.py           # Panel filtering logic
 ├── operators.py      # Blender operators
 ├── ui.py             # N-Panel UI
-└── drawing.py        # GPU drawing (currently disabled)
+├── presets.py        # Workflow presets
+└── drawing.py        # (unused placeholder)
 ```
 
 ## Requirements
 
-- Blender 4.0 or later
+- Blender 4.0+
 
 ## Known Limitations
 
-- Some addon panels may fail to move if they use non-standard registration
-- Panel ordering is based on Blender's internal order, not customizable
+- Some addon panels may not move (non-standard registration)
+- These simply stay visible - safe behavior
 
 ## License
 
