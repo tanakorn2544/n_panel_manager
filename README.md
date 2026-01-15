@@ -2,69 +2,95 @@
 
 A Blender addon for organizing and decluttering your N-Panel (sidebar) by grouping tabs and quickly switching between different tool sets.
 
+![Blender 4.0+](https://img.shields.io/badge/Blender-4.0%2B-orange)
+
 ## Features
 
-- **Group Management**: Create custom groups of N-Panel tabs
-- **Quick Filtering**: Click a group button to instantly show only those tabs
-- **Search/Filter**: Search tabs by name when editing groups
-- **Workflow Presets**: 10 pre-configured presets based on popular addons:
-  - Modeling Essentials, Hard Surface, Sculpting
-  - Animation & Rigging, Environment, Texturing
-  - Rendering, Utility Tools, Retopology, UV Workflow
-- **Workspace Auto-Activation**: Link groups to workspaces for automatic switching
-- **Persistent State**: Your filtering persists across sessions
+### Core
+- **Group Management** - Create custom groups of N-Panel tabs
+- **Quick Filtering** - Click a group to instantly show only those tabs
+- **Persistent State** - Filtering persists across sessions
+
+### Quick Switch (Shift + Scroll)
+- **Shift + Scroll Up/Down** in 3D View to cycle through groups
+- Floating overlay appears at bottom of viewport
+- Auto-hides after 1.5 seconds
+- No clicking needed!
+
+### Workflow Presets
+10 pre-configured presets based on popular addons:
+| Preset | Matches |
+|--------|---------|
+| Modeling Essentials | HardOps, BoxCutter, Mesh Machine, Zen UV |
+| Hard Surface | HardOps, BoxCutter, Decal Machine, Fluent |
+| Sculpting | Sculpt Layers, VK, ZenShaders |
+| Animation & Rigging | Auto Rig Pro, Rigify, Mixamo |
+| Environment | Geo-Scatter, Botaniq, The Grove |
+| Texturing | Sanctus Library, Extreme PBR |
+| Rendering | Physical Starlight, Real Clouds |
+| Utility Tools | Cablerator, Zen Dock, Outliner Pro |
+| Retopology | Retopoflow, Quad Remesher |
+| UV Workflow | Zen UV, UV Packmaster |
+
+### Workspace Auto-Activation
+- Link groups to workspaces
+- Switching workspace auto-applies the linked group
 
 ## Installation
 
 1. Download/zip the `n_panel_manager` folder
-2. In Blender: **Edit > Preferences > Add-ons > Install**
-3. Select the zip file and enable the addon
+2. **Edit > Preferences > Add-ons > Install**
+3. Select zip and enable
 
 ## Usage
 
-### Quick Start
-1. Open N-Panel (press `N`) → find **"N-Panel Tool"** tab
-2. Click a **Quick Preset** button (e.g., "Modeling Essentials")
-3. The addon creates a group with matching installed addons enabled
-4. Click the group button to apply filtering
+### Quick Switch (Recommended)
+1. Create some groups first (see below)
+2. In 3D View: **Shift + Scroll** to cycle groups
+3. Overlay shows current selection
 
-### Manual Group Creation
-1. Click **+** in "Manage Groups"
-2. Name your group
-3. Use the **search box** to find tabs
-4. Check/uncheck tabs to include
+### Manual Setup
+1. Open N-Panel (`N` key) → **N-Panel Tool** tab
+2. Click **+** in "Manage Groups" to create a group
+3. Use **search box** to filter tabs
+4. Check tabs to include in group
+5. Click group button to apply
 
-### Workspace Auto-Activation
-1. Select a group → set "Auto-Activate on Workspace"
-2. Switching workspaces will auto-apply the linked group
+### Presets
+- Click any **Quick Preset** button to auto-create a group
+- Matches installed addons automatically
+
+## Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| **Shift + Scroll Up** | Next group + show overlay |
+| **Shift + Scroll Down** | Previous group + show overlay |
 
 ## File Structure
 
 ```
 n_panel_manager/
-├── __init__.py       # Entry point
-├── constants.py      # Shared constants
-├── preferences.py    # Data structures
-├── core.py           # Panel filtering logic
-├── operators.py      # Blender operators
-├── ui.py             # N-Panel UI
-├── presets.py        # Workflow presets
-└── drawing.py        # (unused placeholder)
+├── __init__.py      # Entry point
+├── constants.py     # Shared constants
+├── preferences.py   # Data structures
+├── core.py          # Panel filtering logic
+├── operators.py     # Blender operators
+├── ui.py            # N-Panel UI
+├── presets.py       # Workflow presets
+├── overlay.py       # Floating quick-switch overlay
+└── drawing.py       # (placeholder)
 ```
-
-## Requirements
-
-- Blender 4.0+
 
 ## Known Limitations
 
-- Some addon panels may not move (non-standard registration)
-- These simply stay visible - safe behavior
+- Some addon panels can't be moved (non-standard registration)
+- These stay visible with "Failed to move" messages - safe behavior
+
+## Author
+
+**Korn Sensei**
 
 ## License
 
 MIT License
-
-## Author
-
-Korn Sensei

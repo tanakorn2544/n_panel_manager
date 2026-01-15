@@ -14,6 +14,7 @@ from . import core
 from . import preferences
 from . import operators
 from . import drawing
+from . import overlay
 from .constants import ADDON_ID
 from bpy.app.handlers import persistent
 
@@ -78,9 +79,12 @@ def register():
     bpy.app.handlers.depsgraph_update_post.append(workspace_handler)
     print("[N-Panel Manager] Registering HUD drawing...")
     drawing.register()
+    print("[N-Panel Manager] Registering floating overlay...")
+    overlay.register()
     print("[N-Panel Manager] Registration complete!")
 
 def unregister():
+    overlay.unregister()
     drawing.unregister()
     
     if load_handler in bpy.app.handlers.load_post:
