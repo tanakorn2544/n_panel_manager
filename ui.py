@@ -32,10 +32,6 @@ class NPANEL_PT_Main(bpy.types.Panel):
             header_row.operator("npanel.restore_all", text="Show All", icon='LOOP_BACK')
         else:
             header_row.label(text="▸ All Tabs Visible", icon='HIDE_OFF')
-        
-        # HUD Toggle
-        row = layout.row(align=True)
-        row.prop(prefs, "show_hud", text="Show HUD Bar", icon='PREFERENCES')
 
         layout.separator()
         
@@ -97,7 +93,6 @@ class NPANEL_PT_Main(bpy.types.Panel):
                 row = col.row(align=True)
                 row.prop(cat, "enabled", text="")
                 row.label(text=cat.name)
-                row.prop(cat, "color", text="")
 
 def register():
     bpy.utils.register_class(NPANEL_PT_Main)
