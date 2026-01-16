@@ -1,7 +1,7 @@
 """
 Quick-switch popup for N-Panel Manager.
 Provides a floating grid UI for fast group switching.
-Trigger: Shift + Scroll Wheel in 3D View
+Trigger: Ctrl + Shift + Scroll Wheel in 3D View
 """
 
 import bpy
@@ -12,7 +12,7 @@ from .constants import ADDON_ID
 
 
 class NPANEL_OT_QuickSwitch(bpy.types.Operator):
-    """Quick switch between N-Panel groups with Shift+Scroll"""
+    """Quick switch between N-Panel groups with Ctrl+Shift+Scroll"""
     bl_idname = "npanel.quick_switch"
     bl_label = "Quick Switch Groups"
     bl_options = {'REGISTER'}
@@ -129,7 +129,8 @@ def register_keymaps():
             'npanel.quick_switch',
             'WHEELUPMOUSE',
             'PRESS',
-            shift=True
+            shift=True,
+            ctrl=True
         )
         kmi.properties.direction = 1
         addon_keymaps.append((km, kmi))
@@ -139,7 +140,8 @@ def register_keymaps():
             'npanel.quick_switch',
             'WHEELDOWNMOUSE',
             'PRESS',
-            shift=True
+            shift=True,
+            ctrl=True
         )
         kmi.properties.direction = -1
         addon_keymaps.append((km, kmi))
@@ -171,7 +173,7 @@ def register():
     for cls in classes:
         bpy.utils.register_class(cls)
     register_keymaps()
-    print("[N-Panel Manager] Quick switch registered (Shift+Scroll)")
+    print("[N-Panel Manager] Quick switch registered (Ctrl+Shift+Scroll)")
 
 
 def unregister():
