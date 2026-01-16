@@ -1,7 +1,11 @@
 bl_info = {
     "name": "N-Panel Manager",
     "author": "Korn Sensei",
+<<<<<<< Updated upstream
     "version": (0, 0, 3),
+=======
+    "version": (0, 0, 5),
+>>>>>>> Stashed changes
     "blender": (4, 0, 0),
     "location": "View3D > N-Panel > N-Panel Tool",
     "description": "Clean up your N-Panel by grouping and hiding tabs.",
