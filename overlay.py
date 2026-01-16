@@ -1,6 +1,6 @@
 """
 Floating quick-switch overlay for N-Panel Manager.
-Shift + Scroll to show and cycle through groups.
+Ctrl + Shift + Scroll to show and cycle through groups.
 """
 
 import bpy
@@ -174,7 +174,7 @@ def hide_overlay():
 
 
 class NPANEL_OT_ScrollSwitch(bpy.types.Operator):
-    """Quick switch groups with Shift+Scroll"""
+    """Quick switch groups with Ctrl+Shift+Scroll"""
     bl_idname = "npanel.scroll_switch"
     bl_label = "Scroll Switch Groups"
     bl_options = {'INTERNAL'}
@@ -273,7 +273,8 @@ def register():
             'npanel.scroll_switch',
             'WHEELUPMOUSE',
             'PRESS',
-            shift=True
+            shift=True,
+            ctrl=True
         )
         kmi.properties.direction = 1
         addon_keymaps.append((km, kmi))
@@ -283,12 +284,13 @@ def register():
             'npanel.scroll_switch',
             'WHEELDOWNMOUSE',
             'PRESS',
-            shift=True
+            shift=True,
+            ctrl=True
         )
         kmi.properties.direction = -1
         addon_keymaps.append((km, kmi))
     
-    print("[N-Panel Manager] Scroll overlay registered (Shift+Scroll)")
+    print("[N-Panel Manager] Scroll overlay registered (Ctrl+Shift+Scroll)")
 
 
 def unregister():

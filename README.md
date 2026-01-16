@@ -12,8 +12,8 @@ A Blender addon for organizing and decluttering your N-Panel (sidebar) by groupi
 - **Quick Filtering** - Click a group to instantly show only those tabs
 - **Persistent State** - Filtering persists across sessions
 
-### ⚡ Quick Switch (Shift + Scroll)
-- **Shift + Scroll Up/Down** in 3D View to cycle through groups
+### ⚡ Quick Switch (Ctrl + Shift + Scroll)
+- **Ctrl + Shift + Scroll Up/Down** in 3D View to cycle through groups
 - Floating overlay appears at bottom of viewport
 - Auto-hides after 1.5 seconds
 - No clicking needed!
@@ -52,7 +52,7 @@ A Blender addon for organizing and decluttering your N-Panel (sidebar) by groupi
 
 ### Quick Switch (Recommended)
 1. Create some groups first (see below)
-2. In 3D View: **Shift + Scroll** to cycle groups
+2. In 3D View: **Ctrl + Shift + Scroll** to cycle groups
 3. Overlay shows current selection
 
 ### Manual Setup
@@ -74,8 +74,8 @@ A Blender addon for organizing and decluttering your N-Panel (sidebar) by groupi
 
 | Shortcut | Action |
 |----------|--------|
-| **Shift + Scroll Up** | Next group + show overlay |
-| **Shift + Scroll Down** | Previous group + show overlay |
+| **Ctrl + Shift + Scroll Up** | Next group + show overlay |
+| **Ctrl + Shift + Scroll Down** | Previous group + show overlay |
 
 ## File Structure
 
